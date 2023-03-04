@@ -8,10 +8,18 @@ const Reviews = db.define('reviews', {
     autoIncrement: true,
     allowNull: false,
   },
+  // userId: {
+  //   type: DataTypes.INTEGER,
+  //   allowNull: false,
+  // },
   comment: {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  // restaurantId: {
+  //   type: DataTypes.INTEGER,
+  //   allowNull: false,
+  // },
   rating: {
     type: DataTypes.INTEGER,
     allowNull: false,

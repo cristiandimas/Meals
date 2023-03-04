@@ -20,6 +20,8 @@ exports.validUserById = catchAsync(async (req, res, next) => {
   next();
 });
 
+
+
 exports.validUserByEmail = catchAsync(async (req, res, next) => {
   const { email } = req.body;
   const user = await Users.findOne({

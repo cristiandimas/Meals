@@ -1,6 +1,9 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { findAllOrdersByUser } = require('../controllers/orders.controllers');
+const {
+  findAllOrdersByUser,
+  findOrderById,
+} = require('../controllers/orders.controllers');
 const {
   findAllUsers,
   updateUsers,
@@ -12,6 +15,7 @@ const {
   protecUpdateAccount,
   protect,
 } = require('../middlewares/auth.middlewares');
+const { validOrdersById } = require('../middlewares/orders.middlewares');
 const { validUserById } = require('../middlewares/users.middlewares');
 const {
   validationFields,
@@ -27,7 +31,7 @@ router.get('/', findAllUsers);
 router.get('/orders', findAllOrdersByUser);
 router.get('/:id', validUserById, findUser);
 
-router.get('/orders/:id');
+router.get('/orders/:id',  validOrdersById, findOrderById);
 /* Una solicitud de patch para actualizar el usuario. */
 router.patch(
   '/:id',

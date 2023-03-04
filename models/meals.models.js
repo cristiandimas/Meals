@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const { db } = require('../database/db');
+const Orders = require('./orders.models');
 
 const Meals = db.define('meals', {
   id: {
@@ -13,9 +14,10 @@ const Meals = db.define('meals', {
     allowNull: false,
   },
   price: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.FLOAT,
     allowNull: false,
   },
+
   status: {
     type: DataTypes.ENUM('active', 'inactive'),
     allowNull: false,

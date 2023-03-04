@@ -6,6 +6,9 @@ const AppError = require('../utils/appError');
 const globalErrorHandler = require('../controllers/error.controller');
 const { authRouter } = require('../routes/auth.routes');
 const { usersRouter } = require('../routes/users.routes');
+const { restaurantsRouter } = require('../routes/restaurants.routes');
+const { mealsRouter } = require('../routes/meals.routes');
+const { ordersRouter } = require('../routes/orders.routes');
 
 /* The Server class is a class that creates an express server, and it has a constructor that sets up
 the server, and it has a listen method that starts the server listening on the port. */
@@ -17,7 +20,9 @@ class Server {
     //Definimos las paths de nuestra aplicación
     this.paths = {
       users: '/api/v1/users',
-
+      restaurants: '/api/v1/restaurants',
+      meals: '/api/v1/meals',
+      orders: '/api/v1/orders',
       auth: '/api/v1/auth',
     };
     //Llamada al metodo de conexión a la base de  datos
@@ -35,9 +40,12 @@ class Server {
   }
   // Aquí tenemos nuestras rutas
   routes() {
-    //indicamos el uso de la ruta users
+    //indicamos el uso de las rutas
     this.app.use(this.paths.users, usersRouter);
-    ////indicamos el uso de la ruta de  autenticacion
+    this.app.use(this.paths.restaurants, restaurantsRouter);
+    this.app.use(this.paths.meals, mealsRouter);
+    this.app.use(this.paths.orders, ordersRouter);
+    //indicamos el uso de la ruta de  autenticacion
     this.app.use(this.paths.auth, authRouter);
 
     /* A catch all route. It will catch all requests that do not match any other route. */

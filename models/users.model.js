@@ -3,7 +3,6 @@ const { db } = require('../database/db');
 const Orders = require('./orders.models');
 const Reviews = require('./reviews.model');
 
-
 const Users = db.define('users', {
   id: {
     type: DataTypes.INTEGER,
