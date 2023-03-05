@@ -18,6 +18,30 @@ exports.createdReview = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.updateReviewsById = catchAsync(async (req, res, next) => {});
+exports.updateReviewsById = catchAsync(async (req, res, next) => {
+  const { comment, rating } = req.body;
+  const { review } = req;
 
-exports.deleteReviewById = catchAsync(async (req, res, next) => {});
+  const updateReview = await review.update({
+    comment,
+    rating,
+  });
+  res.status(200).json({
+    status: 'success',
+    message: 'The Review was been updated',
+    updateReview,
+  });
+});
+
+exports.deleteReviewById = catchAsync(async (req, res, next) => {  
+  const { review } = req;
+
+  const deleteReview = await review.update({
+    status: 'deleted'
+  });
+  res.status(200).json({
+    status: 'success',
+    message: `The Review  with id ${deleteReview.id} was deleted`,    
+  });
+});
+

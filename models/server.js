@@ -9,6 +9,8 @@ const { usersRouter } = require('../routes/users.routes');
 const { restaurantsRouter } = require('../routes/restaurants.routes');
 const { mealsRouter } = require('../routes/meals.routes');
 const { ordersRouter } = require('../routes/orders.routes');
+const helmet = require('helmet');
+const xss = require('xss-clean');
 
 /* The Server class is a class that creates an express server, and it has a constructor that sets up
 the server, and it has a listen method that starts the server listening on the port. */
@@ -37,6 +39,8 @@ class Server {
     }
     this.app.use(cors());
     this.app.use(express.json());
+    this.app.use(helmet());
+    this.app.use(xss());
   }
   // Aquí tenemos nuestras rutas
   routes() {

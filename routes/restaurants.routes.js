@@ -17,6 +17,10 @@ const {
   validRestaurantsById,
 } = require('../middlewares/restaurants.middlewares');
 const {
+  validReviewsById,
+  protecUpdateReview,
+} = require('../middlewares/reviews.middlewares');
+const {
   validationFields,
 } = require('../middlewares/validationFields.middlewares');
 
@@ -40,7 +44,11 @@ router.post(
 router.patch('/:id', restrictTo('admin'), updateRestaurantById);
 router.delete('/:id', restrictTo('admin'), deteleRestaurantById);
 router.post('/reviews/:id', validRestaurantsById, createdReview);
-router.patch('/reviews/:restaurantId/:id', updateReviewsById);
+router.patch(
+  '/reviews/:restaurantId/:id',
+  validReviewsById,
+  updateReviewsById
+);
 router.delete('/reviews/:restaurantId/:id', deleteReviewById);
 
 module.exports = {
